@@ -1,4 +1,7 @@
 .idea
 build
-.*iml
+*.iml
 target
+MVCtest.iml
+*.html
+.gitignore
