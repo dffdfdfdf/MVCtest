@@ -9,28 +9,46 @@ import static com.codeborne.selenide.CollectionCondition.empty;
 import static com.codeborne.selenide.CollectionCondition.exactTexts;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static java.util.Arrays.asList;
 
-
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import java.io.File;
+import java.io.IOException;
+import com.google.common.io.Files;
 import ru.yandex.qatools.allure.annotations.Step;
+import ru.yandex.qatools.allure.annotations.Attachment;
+import com.codeborne.selenide.Screenshots;
 
 /**
- * Created by dmitryk on 22.10.15 1:12
+ * Created by dmitryk on 27.10.15 1:12
  */
 
 public class TodoMVCTest {
 
+    @After
+    public void tearDown() throws IOException {
+        screenshot();
+    }
+
+    @Attachment(type = "image/png")
+    public byte[] screenshot() throws IOException {
+        File screenshot = Screenshots.getScreenShotAsFile();
+        return Files.toByteArray(screenshot);
+    }
 
     @Before
     public void OpenToMVCPage(){
         open("http://todomvc.com/examples/troopjs_require/#/");
         getWebDriver().navigate().refresh();
+    }
+
+    @After
+    public void clearData() {
+        executeJavaScript("localStorage.clear()");
     }
 
     @Test
