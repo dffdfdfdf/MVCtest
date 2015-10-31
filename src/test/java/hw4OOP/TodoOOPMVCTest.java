@@ -1,54 +1,23 @@
 package hw4OOP;
 
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Screenshots;
 import com.codeborne.selenide.SelenideElement;
-import com.google.common.io.Files;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import ru.yandex.qatools.allure.annotations.Attachment;
 import ru.yandex.qatools.allure.annotations.Step;
-
-import java.io.File;
-import java.io.IOException;
 
 import static com.codeborne.selenide.CollectionCondition.empty;
 import static com.codeborne.selenide.CollectionCondition.exactTexts;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static java.util.Arrays.asList;
 
 /**
- * Created by dmitryk on 28.10.15 1:53
+ * Created by dmitryk on 31.10.15 1:53
  */
 
-public class TodoOOPMVCTest {
-
-    @After
-    public void tearDown() throws IOException {
-        screenshot();
-    }
-
-    @Attachment(type = "image/png")
-    public byte[] screenshot() throws IOException {
-        File screenshot = Screenshots.getScreenShotAsFile();
-        return Files.toByteArray(screenshot);
-    }
-
-    @Before
-    public void OpenToMVCPage(){
-        open("http://todomvc.com/examples/troopjs_require/#/");
-        getWebDriver().navigate().refresh();
-    }
-
-    @After
-    public void clearData() {
-        executeJavaScript("localStorage.clear()");
-    }
+public class TodoOOPMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest{
 
     @Test
     public void todoMVCTest() {
