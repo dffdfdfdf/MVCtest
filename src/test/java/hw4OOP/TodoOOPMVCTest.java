@@ -17,7 +17,7 @@ import static java.util.Arrays.asList;
  * Created by dmitryk on 31.10.15 1:53
  */
 
-public class TodoOOPMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest{
+public class TodoOOPMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
 
     @Test
     public void todoMVCTest() {
@@ -25,7 +25,7 @@ public class TodoOOPMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest{
         createTasks("1");
         toggleTask("1");
 
-        switchToActiveFilter();
+        filterActive();
 
         createTasks("2", "3");
         assertNames("2", "3");
@@ -37,7 +37,7 @@ public class TodoOOPMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest{
         toggleALL();
         assertItemsLeftCounter("0");
 
-        switchToCompletedFilter();
+        filterCompleted();
 
         editTask("1", "New").sendKeys(Keys.ESCAPE);
 
@@ -45,7 +45,7 @@ public class TodoOOPMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest{
 
         toggleTask("3");
 
-        switchToAllFilter();
+        filterAll();
 
         assertNames("1", "3");
 
@@ -57,8 +57,9 @@ public class TodoOOPMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest{
 
     static ElementsCollection tasks = $$("#todo-list li");
 
+
     @Step
-    private void createTasks(String... names){
+    private void createTasks(String... names) {
         for(String name: asList(names)) {
             $("#new-todo").setValue(name).pressEnter();
         }
@@ -101,23 +102,23 @@ public class TodoOOPMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest{
     }
 
     @Step
-    public static void switchToAllFilter() {
+    public static void filterAll() {
         $(By.linkText("All")).click();
     }
 
     @Step
-    public static void switchToActiveFilter() {
+    public static void filterActive() {
         $(By.linkText("Active")).click();
     }
 
     @Step
-    public static void switchToCompletedFilter() {
+    public static void filterCompleted() {
         $(By.linkText("Completed")).click();
     }
 
     @Step
-    private static void assertItemsLeftCounter(String text){
-        $("#todo-count > strong").shouldHave(text(text));
+    private static void assertItemsLeftCounter(String text) {
+        $("#todo-count>strong").shouldHave(text(text));
     }
 
 }
