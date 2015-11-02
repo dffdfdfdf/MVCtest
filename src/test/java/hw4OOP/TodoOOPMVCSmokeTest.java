@@ -17,10 +17,10 @@ import static java.util.Arrays.asList;
  * Created by dmitryk on 31.10.15 1:53
  */
 
-public class TodoOOPMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
+public class TodoOOPMVCSmokeTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
 
     @Test
-    public void todoMVCTest() {
+    public void testTodoMVC() {
 
         createTasks("1");
         toggleTask("1");
@@ -39,17 +39,19 @@ public class TodoOOPMVCTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
 
         filterCompleted();
 
-        editTask("1", "New").sendKeys(Keys.ESCAPE);
+        editTask("1", "will not be saved").sendKeys(Keys.ESCAPE);
 
-        deleteTask("New");
+        toggleTask("1");
 
-        toggleTask("3");
+        assertItemsLeftCounter("1");
+
+        clearCompleted();
 
         filterAll();
 
-        assertNames("1", "3");
+        assertNames("1");
 
-        toggleTask("3");
+        toggleTask("1");
         clearCompleted();
         assertNoTasksVisible();
 
