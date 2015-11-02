@@ -52,7 +52,7 @@ public class TodoOOPMVCSmokeTest extends AtTodoMVCPageWithClearedDataAfterEachTe
         assertNames("1");
 
         toggleTask("1");
-        clearCompleted();
+        deleteTask("1");
         assertNoTasksVisible();
 
     }
