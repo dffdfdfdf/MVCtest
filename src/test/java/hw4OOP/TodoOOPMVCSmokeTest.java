@@ -61,45 +61,45 @@ public class TodoOOPMVCSmokeTest extends AtTodoMVCPageWithClearedDataAfterEachTe
 
 
     @Step
-    private void createTasks(String... names) {
+    public void createTasks(String... names) {
         for(String name: asList(names)) {
             $("#new-todo").setValue(name).pressEnter();
         }
     }
 
     @Step
-    private static SelenideElement editTask(String name, String newName) {
+    public static SelenideElement editTask(String name, String newName) {
         tasks.find(text(name)).find(".view label").doubleClick();
         return tasks.find(cssClass("editing")).find(".edit").setValue(newName);
     }
 
     @Step
-    private void deleteTask(String name) {
+    public void deleteTask(String name) {
         tasks.find(text(name)).hover().find(".destroy").click();
     }
 
     @Step
-    private void assertNames(String... names) {
+    public void assertNames(String... names) {
         tasks.filter(visible).shouldHave(exactTexts(names));
     }
 
     @Step
-    private void toggleTask(String name) {
+    public void toggleTask(String name) {
         tasks.find(exactText(name)).find(".toggle").click();
     }
 
     @Step
-    private void toggleALL() {
+    public void toggleALL() {
         $("#toggle-all").click();
     }
 
     @Step
-    private void clearCompleted(){
+    public void clearCompleted(){
         $("#clear-completed").click();
     }
 
     @Step
-    private void assertNoTasksVisible() {
+    public void assertNoTasksVisible() {
         tasks.shouldBe(empty);
     }
 
@@ -119,7 +119,7 @@ public class TodoOOPMVCSmokeTest extends AtTodoMVCPageWithClearedDataAfterEachTe
     }
 
     @Step
-    private static void assertItemsLeftCounter(String text) {
+    public static void assertItemsLeftCounter(String text) {
         $("#todo-count>strong").shouldHave(text(text));
     }
 

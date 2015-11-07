@@ -15,7 +15,7 @@ public class AtTodoMVCPageWithClearedDataAfterEachTest extends BaseTest {
     @Before
     public void openToMVCPage() {
         open("http://todomvc.com/examples/troopjs_require/#/");
-        getWebDriver().navigate().refresh();
+        getWebDriver().navigate();
     }
 
     @After
