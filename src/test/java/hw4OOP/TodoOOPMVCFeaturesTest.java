@@ -64,6 +64,7 @@ public class TodoOOPMVCFeaturesTest extends AtTodoMVCPageWithClearedDataAfterEac
 
     @Test
     public void testSaveByClickOnOtherTaskOnActiveAndAllFilters(){
+
         filterActive();
         createTasks("1", "2");
         assertNames("1", "2");
@@ -79,6 +80,7 @@ public class TodoOOPMVCFeaturesTest extends AtTodoMVCPageWithClearedDataAfterEac
 
     @Test
     public void testEditToEmptyOnActiveAndCompletedFilters(){
+
         filterActive();
         createTasks("1", "2");
         assertNames("1", "2");
@@ -91,6 +93,7 @@ public class TodoOOPMVCFeaturesTest extends AtTodoMVCPageWithClearedDataAfterEac
 
     @Test
     public void testCreateAndEditOnCompletedFilter(){
+
         createTasks("1", "2");
         assertNames("1", "2");
         toggleALL();
@@ -101,6 +104,7 @@ public class TodoOOPMVCFeaturesTest extends AtTodoMVCPageWithClearedDataAfterEac
 
     @Test
     public void testReopenAllOnAllAndActiveFilters(){
+        
         createTasks("1", "2");
         assertNames("1", "2");
         toggleALL();
