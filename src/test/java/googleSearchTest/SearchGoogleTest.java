@@ -6,8 +6,6 @@ import org.junit.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import
 
 /**
  * Created by dmitryk on 08.11.15 22:54
@@ -21,17 +19,14 @@ public class SearchGoogleTest {
     }
 
     @Test
-    public void openSeleniumPageByGoogleSearch(){
+    public void openSeleniumPageByGoogleSearch() {
         search("Selenium");
         assertListItemsFound(10);
 
         assertFirstListEntityHasText("Selenium automates browsers");
-
         clickOnFirstListEntity();
 
         assertTextOnPage("Donate to Selenium");
-
-
 
     }
 
