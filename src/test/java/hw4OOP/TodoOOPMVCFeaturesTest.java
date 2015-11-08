@@ -17,7 +17,7 @@ import static java.util.Arrays.asList;
  * Created by dmitryk on 31.10.15 1:53
  */
 
-public class TodoOOPMVCSmokeTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
+public class TodoOOPMVCFeaturesTest extends AtTodoMVCPageWithClearedDataAfterEachTest {
 
     @Test
     public void testTodoMVC() {
