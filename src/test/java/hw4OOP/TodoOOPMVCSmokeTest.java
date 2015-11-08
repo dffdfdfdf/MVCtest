@@ -33,19 +33,24 @@ public class TodoOOPMVCSmokeTest extends AtTodoMVCPageWithClearedDataAfterEachTe
 
         editTask("2", "New").pressEnter();
         assertNames("New", "3");
+        editTask("3", "will not be saved").sendKeys(Keys.ESCAPE);
 
+        toggleTask("3");
         toggleALL();
         assertItemsLeftCounter("0");
 
         filterCompleted();
 
         editTask("1", "will not be saved").sendKeys(Keys.ESCAPE);
+        editTask("1", "New");
 
-        toggleTask("1");
+        toggleTask("New");
 
         assertItemsLeftCounter("1");
 
         clearCompleted();
+        createTasks("3");
+        assertItemsLeftCounter("2");
 
         filterAll();
 
@@ -56,6 +61,59 @@ public class TodoOOPMVCSmokeTest extends AtTodoMVCPageWithClearedDataAfterEachTe
         assertNoTasksVisible();
 
     }
+
+    @Test
+    public void testSaveByClickOnOtherTaskOnActiveAndAllFilters(){
+        filterActive();
+        createTasks("1", "2");
+        assertNames("1", "2");
+        editTask("2", "New");
+        tasks.find(exactText("1")).click();
+        assertNames("1","New");
+        assertItemsLeftCounter("2");
+        filterAll();
+        editTask("1", "New");
+        tasks.find(exactText("New")).click();
+        assertNames("New","New");
+    }
+
+    @Test
+    public void testEditToEmptyOnActiveAndCompletedFilters(){
+        filterActive();
+        createTasks("1", "2");
+        assertNames("1", "2");
+        toggleTask("1");
+        assertItemsLeftCounter("1");
+        filterCompleted();
+        editTask("1", "");
+        assertNoTasksVisible();
+    }
+
+    @Test
+    public void testCreateAndEditOnCompletedFilter(){
+        createTasks("1", "2");
+        assertNames("1", "2");
+        toggleALL();
+        filterCompleted();
+        editTask("1", "");
+        assertNoTasksVisible();
+    }
+
+    @Test
+    public void testReopenAllOnAllAndActiveFilters(){
+        createTasks("1", "2");
+        assertNames("1", "2");
+        toggleALL();
+
+        filterActive();
+        toggleALL();
+        assertNames("1", "2");
+        toggleALL();
+
+        filterAll();
+        assertNames("1", "2");
+    }
+
 
     static ElementsCollection tasks = $$("#todo-list li");
 
